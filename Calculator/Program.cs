@@ -4,24 +4,24 @@
     {
         static void Main(string[] args)
         {
-            int num1;
-            int num2;
-            int result;
+            float num1;
+            float num2;
+            float result;
 
             string answer;
 
             Console.WriteLine("Hello, welcome to the calculator program!");
 
             Console.WriteLine("Please enter your first number.");
-            num1 = Convert.ToInt32(Console.ReadLine());
+            num1 = float.Parse(Console.ReadLine());
 
             Console.WriteLine("Please enter your second number.");
-            num2 = Convert.ToInt32(Console.ReadLine());
+            num2 = float.Parse(Console.ReadLine());
 
             Console.WriteLine("What type of operation would you like to do?");
             Console.WriteLine("Please enter a for addition,s for subtraction,m for multiplication or d for divison.");
 
-            answer = Console.ReadLine();
+            answer = Console.ReadLine().ToLower();
 
             if (answer == "a")
             {
@@ -37,10 +37,17 @@
             }
             else
             {
-                result = num1 / num2;
+                result = num2 == 0 ? float.NaN : num1 / num2;
             }
 
-            Console.WriteLine("The result is " +result);
+            if (float.IsNaN(result))
+            {
+                Console.WriteLine("Cannot divide by 0!");
+            }
+            else
+            {
+                Console.WriteLine("The result is " + result);
+            }
 
             Console.ReadKey();
         }
